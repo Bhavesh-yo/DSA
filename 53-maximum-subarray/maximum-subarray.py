@@ -2,12 +2,9 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         if not nums:
             return 0
+        curr_max = max_sum = nums[0]
+        for num in nums[1:]:
+            curr_max = max(num, curr_max + num)
+            max_sum = max(max_sum, curr_max)
         
-        max_current = max_global = nums[0]
-        
-        for i in range(1, len(nums)):
-            max_current = max(nums[i], max_current + nums[i])
-            if max_current > max_global:
-                max_global = max_current
-        
-        return max_global
+        return max_sum
